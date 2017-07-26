@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VR JS</title>
+    <script src="script.js"></script>
+
+    <style>
+      iframe {
+        opacity: 0.5;
+        position: absolute;
+        left: 400px;
+        z-index: 2;
+        transform: perspective(500px) translate3d(0, 0, -50px) rotate3d(0, 1, 0, -20deg);
+      }
+
+      img, input, video {
+        height: 800px;
+        position: absolute;
+        width: 1400px;
+        z-index: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <video autoplay></video>
+      <!-- <img src="http://www.slate.com/content/dam/slate/blogs/bad_astronomy/2015/10/151027_BA_blue-sky.jpg.CROP.promo-xlarge2.jpg" /> -->
+      <iframe class="canvas" width="560" height="315" src="https://www.youtube.com/embed/1nB229em8JY" frameborder="0"></iframe>
+    </div>
+  </body>
+</html>
