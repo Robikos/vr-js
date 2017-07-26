@@ -14,9 +14,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
   video = document.querySelector('video');
 
   if (navigator.getUserMedia) {
-    navigator.getUserMedia({audio: true, video: true}, function(stream) {
-      video.src = window.URL.createObjectURL(stream);
-    }, function(err) { console.log("Error inside"); });
+
+    navigator.mediaDevices.enumerateDevices().then(function(deviceInfos) {
+      deviceId = deviceInfos[deviceInfos.length - 1].deviceId;
+      console.log(deviceId);
+      navigator.getUserMedia(
+        {
+          audio: false,
+          video: { deviceId: { exact: deviceId } }
+        }, function(stream) {
+          video.src = window.URL.createObjectURL(stream);
+        }, function(err) { console.log("Error inside"); }
+      );
+    });
+
   } else {
     console.log("ERROR");
   }
