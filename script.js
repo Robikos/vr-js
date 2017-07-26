@@ -16,12 +16,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
   if (navigator.getUserMedia) {
 
     navigator.mediaDevices.enumerateDevices().then(function(deviceInfos) {
-      deviceId = deviceInfos[deviceInfos.length - 1].deviceId;
-      console.log(deviceId);
+      // deviceId = deviceInfos[deviceInfos.length - 1].deviceId;
+      camera = deviceInfos.find(function(device) { device.kind == "videoinput" });
+      console.log(camera.deviceId);
       navigator.getUserMedia(
         {
           audio: false,
-          video: { deviceId: { exact: deviceId } }
+          video: { deviceId: { exact: camera.deviceId } }
         }, function(stream) {
           video.src = window.URL.createObjectURL(stream);
         }, function(err) { console.log("Error inside"); }
